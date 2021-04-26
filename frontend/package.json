@@ -1,7 +1,7 @@
 {
-  "name": "sacred-heart-el",
+  "name": "gainz-gang-frontend",
   "version": "1.0.0",
-  "description": "school website",
+  "description": "TGainz Gang, a store website",
   "main": "index.js",
   "dependencies": {
     "apollo-boost": "^0.1.16",
@@ -36,6 +36,60 @@
     "build": "next build",
     "start": "next start ",
     "heroku-postbuild": "next build"
+  },
+  "//": "This is our babel config, I prefer this over a .babelrc file",
+  "babel": {
+    "env": {
+      "development": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      },
+      "production": {
+        "presets": [
+          "next/babel"
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      },
+      "test": {
+        "presets": [
+          [
+            "next/babel",
+            {
+              "preset-env": {
+                "modules": "commonjs"
+              }
+            }
+          ]
+        ],
+        "plugins": [
+          [
+            "styled-components",
+            {
+              "ssr": true,
+              "displayName": true
+            }
+          ]
+        ]
+      }
+    }
   },
   "author": "Joseph Eggers",
   "license": "ISC"
