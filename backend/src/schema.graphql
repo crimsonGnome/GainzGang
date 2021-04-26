@@ -1,0 +1,93 @@
+# import * from './generated/prisma.graphql'
+type SuccessMessage {
+  message: String
+}
+
+type Mutation {
+  createItem(
+    id: ID
+    title: String
+    description: String
+    price: Int
+    image: [String]
+    largeImage: [String]
+    sold: Boolean
+    goodGame: Boolean
+    recurringItem: Boolean
+    onClearance: Boolean
+    clearancePrice: Int
+    sizes: [String]
+  ): Item!
+  updateItem(
+    id: ID!
+    title: String
+    price: Int
+    description: String
+    sold: Boolean
+    onClearance: Boolean
+    clearancePrice: Int
+    recurringItem: Boolean
+    goodGame: Boolean
+  ): Item!
+  deleteItem(id: ID!): Item
+  signup(
+    email: String!
+    password: String!
+    name: String!
+    shippingAddress: String!
+  ): User!
+  signin(email: String!, password: String!): User!
+  signout: SuccessMessage
+  requestReset(email: String!): SuccessMessage
+  resetPassword(resetToken: String!, password: String!, confirm: String!): User
+  updatePermissions(permissions: [Permission], userId: ID!): User
+  addToCart(id: ID!, size: String!): CartItem
+  removeFromCart(id: ID!): CartItem
+  createOrder(token: String!): Order!
+  createFilter(filter: String!): Filter!
+  createSubfilter(subfilter: String!): Subfilter!
+  updateFilter(id: ID!, filter: String!): Filter
+  deleteFilter(id: ID!): Filter
+  updateSubfilter(id: ID!, filter: String!): Subfilter
+  deleteSubfilter(id: ID!): Filter
+  updateUser(adminView: Boolean): User!
+  updateClearanceBoolean(clearanceBoolean: Boolean): User!
+  updateGoodGame(goodGame: Boolean): User!
+  updateUserFilter(filter: String): Filter
+  updateUserSubfilter(subfilter: String): Subfilter
+  updateShipping(id: ID, shippingAddress: String, name: String): User
+}
+
+type Query {
+  items(
+    where: ItemWhereInput
+    orderBy: ItemOrderByInput
+    skip: Int
+    first: Int
+  ): [Item]!
+  item(where: ItemWhereUniqueInput!): Item
+  itemsConnection(where: ItemWhereInput): ItemConnection!
+  ordersConnection(where: OrderWhereInput): OrderConnection!
+  ordersConnectionUser(where: OrderWhereInput): OrderConnection!
+
+  me: User
+  users: [User]!
+  order(id: ID!): Order
+  orders(orderBy: OrderOrderByInput, skip: Int, first: Int): [Order]!
+  filters(where: FilterWhereInput, orderBy: FilterOrderByInput): [Filter]!
+  subfilters(where: FilterWhereInput, orderBy: FilterOrderByInput): [Subfilter]!
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  shippingAddress: String!
+  permissions: [Permission!]!
+  filters: [String]!
+  subfilters: String
+  clearanceBoolean: Boolean
+  goodGame: Boolean
+  cart: [CartItem!]!
+  adminView: Boolean
+}

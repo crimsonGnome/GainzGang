@@ -1,0 +1,110 @@
+enum Permission {
+  ADMIN
+  USER
+  ITEMCREATE
+  ITEMUPDATE
+  ITEMDELETE
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @unique @id
+  name: String!
+  email: String! @unique
+  password: String!
+  defaultsize: String
+  loginAttempts: Int 
+  shippingAddress: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  filters:[String] @scalarList(strategy: RELATION)
+  clearanceBoolean: Boolean @default(value: false)
+  goodGame: Boolean @default(value: false)
+  subfilters: String 
+  permissions: [Permission] @scalarList(strategy: RELATION)
+  cart: [CartItem!]!
+  orders: [Order]
+  adminView: Boolean @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Item {
+  id: ID! @unique @id
+  title: String!
+  description: String!
+  image: [String] @scalarList(strategy: RELATION)
+  largeImage: [String] @scalarList(strategy: RELATION)
+  price: Int!
+  user: User!
+  sizes: [String] @scalarList(strategy: RELATION)
+  recurringItem: Boolean @default(value: true)
+  unitsSold: Int! @default(value: 1)
+  sold: Boolean @default(value: false)
+  onClearance: Boolean @default(value: false)
+  goodGame: Boolean @default(value: false)
+  clearancePrice: Int  
+  orderFormat: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type CartItem {
+  id: ID! @unique @id
+  quantity: Int! @default(value: 1)
+  size: String!
+  item: Item #relationship to Item
+  user: User! #realtionship to the CLient
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type OrderItem {
+  id: ID! @unique @id
+  title: String!
+  description: String!
+  image: [String]! @scalarList(strategy: RELATION)
+  largeImage: [String] @scalarList(strategy: RELATION)
+  price: Int!
+  quantity: Int! @default(value: 1)
+  size: String!
+  user: User
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Order {
+  id: ID! @unique @id
+  items: [OrderItem]!
+  total: Int!
+  user: User!
+  userName: String!
+  fulfilled: Boolean @default(value: false)
+  shippingAddress: String!
+  charge: String!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Filter {
+  id: ID! @unique @id
+  filter: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Subfilter {
+  id: ID! @unique @id
+  subfilter: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type BannerFilter {
+  id: ID! @unique @id
+  imageTitle: String!
+  largeImage: String!
+  caption: String
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
