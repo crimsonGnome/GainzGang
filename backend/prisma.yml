@@ -1,5 +1,5 @@
-#Always make sure to switch to production
-endpoint: https://us1.prisma.sh/eggersjoseph23-36a5ee/testyGainz/dev
+endpoint: ${env:PRISMA_ENDPOINT}
+# endpoint: https://ganiz-gang-prod-91af2f8d93.herokuapp.com/GainzGang/prod
 datamodel: datamodel.prisma
 secret: ${env:PRISMA_SECRET}
 generate:
