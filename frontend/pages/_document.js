@@ -15,7 +15,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          {process.env.NODE_ENV !== 'development' && (
+          {/* {process.env.NODE_ENV !== 'development' && (
             <script
               dangerouslySetInnerHTML={{
                 __html: `if (typeof window !== "undefined") {
@@ -30,7 +30,7 @@ export default class MyDocument extends Document {
             />
           )}
 
-          {this.props.styleTags}
+          {this.props.styleTags} */}
         </Head>
         <body>
           <Main />
