@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "next dev -p 7777",
     "build": "next build",
-    "start": "next start ",
+    "start": "next start -p $PORT ",
     "heroku-postbuild": "next build"
   },
   "//": "This is our babel config, I prefer this over a .babelrc file",
