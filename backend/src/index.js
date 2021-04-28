@@ -32,7 +32,7 @@ server.express.use(async (req, res, next) => {
   next();
 });
 
-https.server.start(
+server.start(
   {
     cors: {
       credentials: true,
