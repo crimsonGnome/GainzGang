@@ -3,22 +3,11 @@ import { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import Router from 'next/router';
 import NavStyles, { Header, Logo } from './styles/NavStyles';
-import NProgress from 'nprogress';
 import Signout from './Signout';
 import User from './User';
 import { TOGGLE_CART_MUTATION } from './Cart';
 import CartCount from './CartCount';
 
-Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
-
-Router.onRouteChangeError = () => {
-  NProgress.done();
-};
 class Nav extends Component {
   state = {
     ariaControl: false,
