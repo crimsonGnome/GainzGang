@@ -1,6 +1,5 @@
 const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
-const http = require('http');
 require('dotenv').config({ path: 'variables.env' });
 
 const createServer = require('./createServer');

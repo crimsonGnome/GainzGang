@@ -120,7 +120,7 @@ class Nav extends Component {
                     <>
                       <li>
                         <Link prefetch href="/signup">
-                          <a>Sign In</a>
+                          <a onClick={this.handleChange}>Sign In</a>
                         </Link>
                       </li>
                     </>
