@@ -4,7 +4,6 @@ import { Query, Mutation } from 'react-apollo';
 import gql from 'graphql-tag';
 import { sRules } from '../lib/regExpressionName';
 import Router from 'next/router';
-import { set } from 'nprogress';
 import User from './User';
 import ClearanceBooleanView from './ClearanceBoolean';
 import GoodGame from './GoodGame';
@@ -57,7 +56,7 @@ class FilterListUser extends Component {
             {({ data, loading, error }) => {
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error: {error.message}</p>;
-              if (!data || data.items.length === 0)
+              if (!data || data.filters.length === 0)
                 return (
                   <ItemList>
                     <p className="noData">no filter</p>

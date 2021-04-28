@@ -62,7 +62,7 @@ class Subfilter extends Component {
               {({ data, loading, error }) => {
                 if (loading) return <p>Loading...</p>;
                 if (error) return <p>Error: {error.message}</p>;
-                if (!data || data.items.length === 0)
+                if (!data || data.subfilters.length === 0)
                   return (
                     <ItemList>
                       <p className="noData">no data</p>
