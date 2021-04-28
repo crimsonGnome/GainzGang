@@ -194,7 +194,7 @@ const Mutations = {
     ctx.response.cookie('token', token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365,
-      SameSite: 'None',
+      sameSite: 'none',
       secure: true,
     });
     //rerurn new user
