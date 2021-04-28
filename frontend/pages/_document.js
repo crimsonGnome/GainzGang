@@ -28,9 +28,9 @@ export default class MyDocument extends Document {
       }`,
               }}
             />
-          )}
+          )} */}
 
-          {this.props.styleTags} */}
+          {this.props.styleTags}
         </Head>
         <body>
           <Main />
