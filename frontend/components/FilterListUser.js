@@ -54,13 +54,23 @@ class FilterListUser extends Component {
           <GoodGame></GoodGame>
           <h4>Category</h4>
           <Query query={FITLER_LIST}>
-            {({ data, loading, error }) => (
-              <ul>
-                {data.filters.map((filter) => (
-                  <Filter key={filter.id} filter={filter} code="filter" />
-                ))}
-              </ul>
-            )}
+            {({ data, loading, error }) => {
+              if (loading) return <p>Loading...</p>;
+              if (error) return <p>Error: {error.message}</p>;
+              if (!data || data.items.length === 0)
+                return (
+                  <ItemList>
+                    <p className="noData">no filter</p>
+                  </ItemList>
+                );
+              return (
+                <ul>
+                  {data.filters.map((filter) => (
+                    <Filter key={filter.id} filter={filter} code="filter" />
+                  ))}
+                </ul>
+              );
+            }}
           </Query>
           <h4>Clearance</h4>
           <ClearanceBooleanView></ClearanceBooleanView>

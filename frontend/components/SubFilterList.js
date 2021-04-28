@@ -59,28 +59,38 @@ class Subfilter extends Component {
         >
           {(updateUserSubfilter, { loading, error }) => (
             <Query query={SUBFITLER_LIST}>
-              {({ data, loading, error }) => (
-                <ul>
-                  <>
-                    {data.subfilters.map((filter) => (
-                      <li key={filter.id}>
-                        <input
-                          onChange={(e) =>
-                            this.handleFilter(
-                              updateUserSubfilter,
-                              filter.subfilter
-                            )
-                          }
-                          disabled={loading}
-                          type="checkbox"
-                          checked={this.seeIfChecked(filter.subfilter)}
-                        />
-                        {filter.subfilter}
-                      </li>
-                    ))}
-                  </>
-                </ul>
-              )}
+              {({ data, loading, error }) => {
+                if (loading) return <p>Loading...</p>;
+                if (error) return <p>Error: {error.message}</p>;
+                if (!data || data.items.length === 0)
+                  return (
+                    <ItemList>
+                      <p className="noData">no data</p>
+                    </ItemList>
+                  );
+                return (
+                  <ul>
+                    <>
+                      {data.subfilters.map((filter) => (
+                        <li key={filter.id}>
+                          <input
+                            onChange={(e) =>
+                              this.handleFilter(
+                                updateUserSubfilter,
+                                filter.subfilter
+                              )
+                            }
+                            disabled={loading}
+                            type="checkbox"
+                            checked={this.seeIfChecked(filter.subfilter)}
+                          />
+                          {filter.subfilter}
+                        </li>
+                      ))}
+                    </>
+                  </ul>
+                );
+              }}
             </Query>
           )}
         </Mutation>
