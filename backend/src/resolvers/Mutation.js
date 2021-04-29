@@ -128,8 +128,8 @@ const Mutations = {
     return user;
   },
   signout(parent, args, ctx, info) {
-    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
-    ctx.response.clearCookie('token', token, {
+    // const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    ctx.response.clearCookie('token', {
       httpOnly: true,
       sameSite: 'none',
       secure: true,
