@@ -95,7 +95,7 @@ const Mutations = {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365, //1 year cookie
       SameSite: 'none',
-      domain: 'https://gzgapparel.com',
+
       secure: true,
     });
     //Finally return the user to the browser
@@ -123,7 +123,7 @@ const Mutations = {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365, //1 year cookie
       SameSite: 'none',
-      domain: 'https://gzgapparel.com',
+
       secure: true,
     });
     //Return the user
@@ -197,7 +197,7 @@ const Mutations = {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 365,
       SameSite: 'none',
-      domain: 'https://gzgapparel.com',
+
       secure: true,
     });
     //rerurn new user
