@@ -128,7 +128,12 @@ const Mutations = {
     return user;
   },
   signout(parent, args, ctx, info) {
-    ctx.response.clearCookie('token');
+    const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+    ctx.response.clearCookie('token', token, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
     return { message: 'Gooodbye!' };
   },
   async requestReset(parent, args, ctx, info) {
