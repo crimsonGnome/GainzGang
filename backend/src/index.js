@@ -5,7 +5,7 @@ const http = require('http');
 const createServer = require('./createServer');
 const db = require('./db');
 
-const server = http.createServer();
+const server = createServer();
 
 // Express middlware to handle cookies (JWT)
 server.express.use(cookieParser());
